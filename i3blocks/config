@@ -1,0 +1,25 @@
+color=#f3f4f5
+separator_block_width=32
+markup=none
+
+[volume-pulseaudio]
+command=~/.local/src/i3blocks-contrib/volume-pulseaudio/volume-pulseaudio
+interval=1
+signal=10
+LONG_FORMAT="${SYMB}${VOL}%"
+SHORT_FORMAT="${SYMB}${VOL}%"
+DEFAULT_COLOR="#f3f4f5"
+USE_ALSA_NAME=2
+
+[brightness]
+command=~/.config/i3blocks/brightness.sh
+interval=1
+
+[battery2]
+command=~/.local/src/i3blocks-contrib/battery2/battery2
+markup=pango
+interval=30
+
+[time]
+command=echo -n " ";  date '+%a, %d %b %I:%M:%S %p'
+interval=1

@@ -1,0 +1,116 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    // "height": 34, // Waybar height
+    // "width": 1280, // Waybar width
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode"
+    ],
+    "modules-center": ["custom/nowplaying"],
+    "modules-right": [
+        "idle_inhibitor",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "backlight",
+        "custom/battery_time",
+        "battery",
+        "clock",
+        "tray"
+    ],
+    // Modules configuration
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "idle_inhibitor": {
+        "format": "<span>{icon}</span>",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{:%a, %b %d | %I:%M:%S %p}",
+        "tooltip-format": "{:%Y-%m-%d | %H:%M}",
+        "format-alt": "{:%Y-%m-%d}",
+        "interval": 1
+    },
+    "cpu": {
+        "format": "{usage}% "
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
+    },
+    "custom/battery_time": {
+        "format": "  {}",
+        "exec": "acpi -b | cut -d ',' -f3 | awk '{print $1}' | cut -d ':' -f1,2",
+        "interval": 30
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "({capacity}%) {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} {signalStrength}% ",
+        // "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        // "format-wifi": "{signalStrength}% ",
+        "format-disconnected": "Disconnected ⚠",
+	"interval": 3
+    },
+    "pulseaudio": {
+        //"scroll-step": 1,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/nowplaying": {
+        "interval": 2,
+        "format": " {}   ",
+        "max-length": 80,
+        "escape": true,
+        "exec": "$HOME/.config/waybar/nowplaying.sh"
+    }
+}

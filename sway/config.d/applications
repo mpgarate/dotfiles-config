@@ -1,0 +1,39 @@
+# Application launcher
+set $menu rofi -i -modi drun -show drun
+bindsym $mod+d exec $menu
+
+# Calculator
+bindsym $mod+c exec rofi \
+  -show calc \
+  -modi calc \
+  -no-show-match \
+  -no-sort \
+  -calc-command "echo '{result}' | wl-copy"
+
+#exec --no-startup-id 'nm-applet --indicator'
+
+# window picker
+bindsym $alt+Tab exec ~/dotfiles/bin/sway-rofi-window-switch.sh
+
+# Terminal
+set $term env KITTY_ENABLE_WAYLAND=1 kitty
+bindsym $mod+Return exec $term
+exec $term -- tmux new-session -A -s 1
+
+# Notifications
+exec mako
+bindsym $mod+n exec makoctl dismiss
+bindsym $mod+Shift+n exec makoctl dismiss --all
+
+# Startup Applications
+exec dropbox start
+exec gtk-launch qutebrowser
+exec gtk-launch weechat
+exec google-play-music-desktop-player
+exec gtk-launch yakyak
+exec gtk-launch slack
+exec redshift-gtk
+# exec env WLR_DRM_NO_ATOMIC=1 redshift -l 37.7749:122.4194 -m wayland
+# exec mullvad block-when-disconnected set off && mullvad connect
+# exec chromium
+# exec swaymsg "workspace $ws3; exec /snap/bin/spotify; workspace $ws1"

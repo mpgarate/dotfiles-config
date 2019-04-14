@@ -1,0 +1,43 @@
+# 
+# Audio controls
+#
+
+set $vol_cmd pactl set-sink-volume @DEFAULT_SINK@
+bindsym XF86AudioRaiseVolume exec $vol_cmd +5% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec $vol_cmd -5% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# key name found with `xev`
+# player name found with:
+# dbus-send --session --dest=org.freedesktop.DBus --type=method_call --print-reply /org/freedesktop/DBus org.freedesktop.DBus.ListNames | grep org.mpris.MediaPlayer2 | awk -F\" '{print $2}' | cut -d '.' -f4- | sort
+#set $player org.mpris.MediaPlayer2.google-play-music-desktop-player
+
+bindsym XF86Tools exec playerctl play-pause
+bindsym XF86Bluetooth exec playerctl next
+
+#set $player org.mpris.MediaPlayer2.spotify
+#bindsym XF86Tools exec dbus-send \
+#    --print-reply \
+#    --dest=$player \
+#    /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+#
+#
+#bindsym XF86Bluetooth exec dbus-send \
+#    --print-reply \
+#    --dest=$player \
+#    /org/mpris/MediaPlayer2 \
+#    org.mpris.MediaPlayer2.Player.Next
+
+
+# 
+# Sreen brightness controls
+#
+# if this breaks, consider running the script to configure with acpi
+# it tends to break after running the gnome/Ubuntu desktop
+#
+
+#bindsym XF86MonBrightnessUp exec brightnessctl set +10
+#bindsym XF86MonBrightnessDown exec brightnessctl set 10-
+#bindsym $mod+XF86MonBrightnessUp exec brightnessctl set +100
+#bindsym $mod+XF86MonBrightnessDown exec brightnessctl set 200-
+#

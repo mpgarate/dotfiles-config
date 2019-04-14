@@ -1,0 +1,24 @@
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+
+# adjust this depending on how dark the wallpaper is
+set $theme_alpha FF
+set $inactive_alpha AA
+
+set $bg_neutral "#222222$theme_alpha"
+set $bg_active1 "#333333$theme_alpha"
+set $bg_active2 "#222222$inactive_alpha"
+set $text_color "#FFFFFF"
+set $bg_urgent "#FFFFFF$theme_alpha"
+set $text_color_urgent "#000000FF"
+
+bar {
+    swaybar_command waybar
+}
+
+# border, background, text, indicator, child border
+client.unfocused $bg_active2 $bg_active2 "$text_color$inactive_alpha" #AAAAAA #000000
+client.focused $bg_neutral $bg_neutral $text_color #AAAAAA #000000
+client.urgent $bg_urgent $bg_urgent $text_color_urgent #AAAAAA #000000

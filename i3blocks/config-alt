@@ -1,0 +1,56 @@
+color=#f3f4f5
+separator_block_width=32
+markup=none
+
+[disk-home]
+command=echo -n "  "; df -h -P -l "$HOME" | awk '/\/.*/ { print $3; exit 0 }'
+interval=30
+
+[weather]
+command=curl -Ss 'https://wttr.in/San%20Francisco?0&T&Qu' | cut -c 16- | head -2 | xargs echo
+interval=3600
+color=#A4C2F4
+
+[mediaplayer]
+command=~/.local/src/i3blocks-contrib/mediaplayer/mediaplayer
+instance=google-play-music-desktop-player
+interval=5
+signal=10
+
+[cpu_usage]
+command=~/.local/src/i3blocks-contrib/cpu_usage/cpu_usage
+interval=10
+LABEL=CPU 
+#min_width=CPU: 100.00%
+#T_WARN=50
+#T_CRIT=80
+#DECIMALS=2
+
+[wifi]
+command=~/.local/src/i3blocks-contrib/wifi/wifi
+label=wifi:
+#INTERFACE=wlan1
+interval=60
+
+[bandwidth3]
+command=~/.local/src/i3blocks-contrib/bandwidth3/bandwidth3
+interval=persist
+markup=pango
+#LABEL=<span font='FontAwesome'>  </span>
+#IFACE=[automatically determined]
+#DT=3
+#UNIT=Mb
+# Exposed variables: rx, wx, tx, unit, iface
+#PRINTF_COMMAND=printf "${LABEL}%-5.1f/%5.1f %s/s\n", rx, wx, unit;
+
+[settings label]
+command=echo settings:
+interval=30
+
+[audio-settings]
+command=~/dotfiles/bin/i3blocks/settings-audio.sh
+interval=30
+
+[network-settings]
+command=~/dotfiles/bin/i3blocks/settings-network.sh
+interval=30

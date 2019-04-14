@@ -1,0 +1,16 @@
+# Read `man 5 sway` for a complete reference.
+
+### Key alias variables
+set $mod Mod4
+set $alt Mod1
+
+include ~/.config/sway/config.d/*
+
+######
+# TODO List
+# - qutebrowser copy/paste issue
+# - ability to upload + share screenshot (with dropbox?)
+# - match terminal + ui fonts
+# - dmenu + lastpass
+# - try transparent inactive windows
+# - dashlane wine (maybe)
